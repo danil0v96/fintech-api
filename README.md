@@ -177,6 +177,16 @@ El proyecto incluye excepciones personalizadas para los casos en que no se encue
 
 Los controladores responden con `404 Not Found` cuando el recurso solicitado no existe. Los DTO utilizan validaciones para rechazar datos incorrectos con `400 Bad Request`.
 
+## Colección de Postman
+
+La colección lista para importar se encuentra en:
+
+```text
+postman/Fintech API.postman_collection.json
+```
+
+Incluye todos los endpoints de usuarios y cuentas. Utiliza la variable de colección `baseUrl`, configurada con el valor `http://localhost:8080`.
+
 ## Tests
 
 Los servicios se prueban de manera unitaria utilizando JUnit 5 y Mockito.
