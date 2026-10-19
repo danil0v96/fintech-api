@@ -185,7 +185,7 @@
           "response": []
         },
         {
-          "name": "Crear cuenta",
+          "name": "Crear cuenta duplicada (409)",
           "request": {
             "method": "POST",
             "header": [],
@@ -246,6 +246,32 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Crear cuenta nueva",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cbu\": \"1234000891113456000012\",\n  \"alias\": \"ana.fintech\",\n  \"userId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/cuentas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cuentas"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     }
@@ -253,7 +279,7 @@
   "variable": [
     {
       "key": "baseUrl",
-      "value": "http://localhost:8080"
+      "value": ""
     }
   ]
 }

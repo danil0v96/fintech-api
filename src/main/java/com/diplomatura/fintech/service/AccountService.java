@@ -4,6 +4,7 @@ import com.diplomatura.fintech.entity.Account;
 import com.diplomatura.fintech.entity.User;
 import com.diplomatura.fintech.enums.AccountStatus;
 import com.diplomatura.fintech.exception.AccountNotFoundException;
+import com.diplomatura.fintech.exception.CbuAlreadyExistsException;
 import com.diplomatura.fintech.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,10 @@ public class AccountService {
 
     public Account create(String cbu, String alias, Long userId) {
         User user = userService.findById(userId);
+
+        if (accountRepository.existsByCbu(cbu)) {
+            throw new CbuAlreadyExistsException(cbu);
+        }
 
         Account account = new Account(cbu, alias, user);
 

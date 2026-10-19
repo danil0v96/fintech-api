@@ -3,6 +3,7 @@ package com.diplomatura.fintech.controller;
 import com.diplomatura.fintech.dto.CreateAccountRequest;
 import com.diplomatura.fintech.entity.Account;
 import com.diplomatura.fintech.exception.AccountNotFoundException;
+import com.diplomatura.fintech.exception.CbuAlreadyExistsException;
 import com.diplomatura.fintech.exception.UserNotFoundException;
 import com.diplomatura.fintech.service.AccountService;
 import org.springframework.http.HttpStatus;
@@ -93,7 +94,7 @@ public class AccountController {
             )
     })
     @PostMapping
-    public ResponseEntity<Account> create(
+    public ResponseEntity<?> create(
             @Valid @RequestBody CreateAccountRequest request
     ) {
         try {
@@ -109,6 +110,11 @@ public class AccountController {
 
         } catch (UserNotFoundException exception) {
             return ResponseEntity.notFound().build();
+
+        } catch (CbuAlreadyExistsException exception) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body(exception.getMessage());
         }
     }
 
